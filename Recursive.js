@@ -57,76 +57,76 @@
 
 /* Callback Practice */
 
-function gradeIs(grade) {
-    switch(true) {
-        case grade === "A+":
-            console.log("You have Got Grade", grade , "EXECELLENT");
-            break;
-        case grade === "A":
-            console.log("You have Got Grade", grade , "EXECELLENT");
-            break;
-        case grade === "B":
-            console.log("You have Got Grade", grade , "BEST");
-            break;
-        case grade === "C":
-            console.log("You have Got Grade", grade , "GOOD");
-            break;
-        case grade === "D":
-            console.log("You have Got Grade", grade , "IMPROVE");
-            break;
-        default:
-                console.log("You have Got Grade", grade , "FAILED");
-            break;
-    }
-}
+// function gradeIs(grade) {
+//     switch(true) {
+//         case grade === "A+":
+//             console.log("You have Got Grade", grade , "EXECELLENT");
+//             break;
+//         case grade === "A":
+//             console.log("You have Got Grade", grade , "EXECELLENT");
+//             break;
+//         case grade === "B":
+//             console.log("You have Got Grade", grade , "BEST");
+//             break;
+//         case grade === "C":
+//             console.log("You have Got Grade", grade , "GOOD");
+//             break;
+//         case grade === "D":
+//             console.log("You have Got Grade", grade , "IMPROVE");
+//             break;
+//         default:
+//                 console.log("You have Got Grade", grade , "FAILED");
+//             break;
+//     }
+// }
 
-function getResult(score, callBack) {
-    let Grade;
-    switch(true){
-        case score>= 90 && score <= 100:
-            Grade= "A+";
-            break;
-        case score>= 80 && score < 90:
-            Grade= "A";
-            break;
-        case score>= 70 && score < 80:
-            Grade= "B";
-            break;
-        case score>= 60 && score < 70:
-            Grade= "C";
-            break;
-        case score>= 50 && score < 60:
-            Grade= "D";
-            break;
-        default:
-            Grade= "F";
-            break;
+// function getResult(score, callBack) {
+//     let Grade;
+//     switch(true){
+//         case score>= 90 && score <= 100:
+//             Grade= "A+";
+//             break;
+//         case score>= 80 && score < 90:
+//             Grade= "A";
+//             break;
+//         case score>= 70 && score < 80:
+//             Grade= "B";
+//             break;
+//         case score>= 60 && score < 70:
+//             Grade= "C";
+//             break;
+//         case score>= 50 && score < 60:
+//             Grade= "D";
+//             break;
+//         default:
+//             Grade= "F";
+//             break;
 
-    }
-    callBack(Grade);
-}
+//     }
+//     callBack(Grade);
+// }
 
-getResult(99,gradeIs);
+// getResult(99,gradeIs);
 
 
-/* callaback Practice */
+// /* callaback Practice */
 
-function greeting(fullName) {
-    let Greet=" Hello,";
-    let nameIs="";
-    for(let i=0; i<fullName.length; i++){
-        const Name=nameIs + fullName[i] +" "; 
-        nameIs=Name;  
-    }
-     console.log(`${Greet} ${nameIs}`)    
-}
+// function greeting(fullName) {
+//     let Greet=" Hello,";
+//     let nameIs="";
+//     for(let i=0; i<fullName.length; i++){
+//         const Name=nameIs + fullName[i] +" "; 
+//         nameIs=Name;  
+//     }
+//      console.log(`${Greet} ${nameIs}`)    
+// }
 
-function getArgs(Name, callaback) {
-    const name= Name.split(" ");
-    greeting(name);
-}
+// function getArgs(Name, callaback) {
+//     const name= Name.split(" ");
+//     greeting(name);
+// }
 
-getArgs("Shahid Khan Niazi", greeting);
+// getArgs("Shahid Khan Niazi", greeting);
 
 
 /* Promises (A function that return an object).. takes parameters(resolve, reject) */
@@ -233,3 +233,37 @@ getArgs("Shahid Khan Niazi", greeting);
 // }
 
 /* Practice */ 
+
+const allowedPasswords = ["Blockchain123", "Shahid12334", "Web3Metaverse"];
+
+function checkPassword(password) {
+  return allowedPasswords.includes(password);
+}
+
+function logIn(password) {
+    return new Promise ((resolve, reject) => {
+        if (checkPassword(password)) {
+            resolve({
+                status: true
+            })
+        }
+        else{
+            reject({
+                status: false
+            })
+        }
+    })
+}
+
+function passwordChecker(password) {
+    logIn(password)
+        .then(value => {
+            console.log("Authorize User :", value);
+        })
+        .catch(value => {
+            console.log("Rejected User :", value);
+        })
+}
+
+passwordChecker("Shahid12334");
+passwordChecker("password123");
